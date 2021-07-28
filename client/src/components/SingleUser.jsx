@@ -27,7 +27,7 @@ class SingleUser extends Component {
             <h4>Vartotojo vardas:{u.name}</h4>
             <p>amžius:{u.age}</p>
             <p>El. paštas:{u.email}</p>
-            <p>Slaptažodis:{u.password}</p>
+            {/* <p>Slaptažodis:{u.password}</p> */}
             </div>
             <div className="single-user__card-footer">
                 <button onClick={this.handleEdit}>Redaguoti</button>

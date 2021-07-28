@@ -1,9 +1,6 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
-// reikia apibrezti kokio tipo duomenys bus saugomi DB
-
-// { title: string, body: string, .. }
 
 const userSchema = new Schema(
   {
@@ -24,7 +21,7 @@ const userSchema = new Schema(
       required: true,
     },
   },
-  { timestamps: true } /// adds timestamps
+  { timestamps: true }
 );
 
 const UserModel = mongoose.model('user', userSchema);

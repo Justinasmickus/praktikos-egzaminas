@@ -7,6 +7,21 @@ class MyForm extends Component {
     email: '',
     password: '',
   };
+
+  componentDidMount() {
+    this.props.user && this.propsToState();
+  }
+
+  propsToState() {
+    const { name, age, email, password } = this.props.user;
+    this.setState({
+      name,
+      age,
+      email,
+      password,
+    });
+  }
+
   clearInputs = () => {
     this.setState({
       name: '',
@@ -15,21 +30,31 @@ class MyForm extends Component {
       password: '',
     });
   };
-  
+
 
   handleSubmit = async (e) => {
     const { name, age, email, password } = this.state;
     e.preventDefault();
+  
     const dataToCreateNewUser = {
       name,
       age,
       email,
       password,
     };
+    if (this.props.user) {
+        console.log('Editinam one Sukuriam');
+        this.props.onEdit(dataToCreateNewUser);
+        return;
+      }
+
+
     this.props.onCreateNewUser(dataToCreateNewUser);
     const createSuccess = await this.props.onCreateNewUser(dataToCreateNewUser);
     if (createSuccess) this.clearInputs();
   };
+
+
   handleInput = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -72,7 +97,7 @@ class MyForm extends Component {
             placeholder='Slaptažodis'
           />
 
-          <button className='form-create__btn'>Sukurti naują vartotoją</button>
+          <button className='form-create__btn'>{this.props.user ? 'redaguoti' : 'Sukurti naują vartotoją'}</button>
         </form>
       </div>
     );

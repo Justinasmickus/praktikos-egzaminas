@@ -39,7 +39,15 @@ class App extends Component {
   }
 
   updateUser = async (id, updatedDetails) => {
-    console.log('about to update user', id, updatedDetails);
+    try {
+      const updateResult = await axios.put(
+        'http://localhost:4000/api/user/update/' + id,
+        updatedDetails
+      );
+      if (updateResult.data) this.getAllUsers();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   createNewUser = async (dataToCreateNewUser) => {

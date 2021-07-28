@@ -12,7 +12,7 @@ class SingleUser extends Component {
             </div>
             <div className="single-user__card-footer">
                 <button>Redaguoti</button>
-                <button>Ištrinti</button>
+                <button onClick={() => this.props.onDelete(u._id)}>Ištrinti</button>
             </div>
 
         </div> );

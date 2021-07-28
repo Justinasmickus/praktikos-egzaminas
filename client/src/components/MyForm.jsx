@@ -63,7 +63,7 @@ class MyForm extends Component {
     const { state: s } = this;
     return (
       <div className='form-container'>
-        <form autoComplete='off' onSubmit={this.handleSubmit}>
+        <form className='form' autoComplete='off' onSubmit={this.handleSubmit}>
           <input
             type='text'
             onChange={this.handleInput}

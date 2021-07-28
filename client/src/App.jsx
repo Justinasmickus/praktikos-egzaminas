@@ -5,8 +5,16 @@ import MyForm from './components/MyForm';
 
 class App extends Component {
   state = {  }
-  createNewUser = (dataToCreateNewUser) => {
-    console.log('dataToCreateNewUser', dataToCreateNewUser)
+  createNewUser = async (dataToCreateNewUser) => {
+    console.log('dataToCreateNewUser', dataToCreateNewUser);
+    try {
+      const createRes = await axios.post('http://localhost:4000/api/user/new', dataToCreateNewUser);
+      console.log('created user ', createRes.data);
+      return createRes.data ? true : false;
+       
+     } catch (error) {
+       console.error(error)
+     }
   }
 
   render() { 

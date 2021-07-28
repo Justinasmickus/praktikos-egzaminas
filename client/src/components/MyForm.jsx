@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 
 class MyForm extends Component {
   state = {
-    name: 'Tiger',
-    age: '26',
-    email: 'tiger@woods.com',
-    password: 'uwontpass',
+    name: '',
+    age: '',
+    email: '',
+    password: '',
   };
   clearInputs = () => {
     this.setState({
@@ -15,6 +15,7 @@ class MyForm extends Component {
       password: '',
     });
   };
+  
 
   handleSubmit = async (e) => {
     const { name, age, email, password } = this.state;

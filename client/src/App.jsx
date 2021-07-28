@@ -26,16 +26,21 @@ class App extends Component {
       console.error(error);
     }
   };
+
   deleteUser = async (id) => {
     try {
       const deleteResult = await axios.delete('http://localhost:4000/api/user/delete/' + id);
-      // console.log('deleteResult', deleteResult.data);
-      // atnaujinti sarasa kad neliktu ka istrynem
-      this.getAllUsers();
+      if (deleteResult.data) {
+        this.getAllUsers();
+      }
     } catch (error) {
       console.error(error);
     }
   }
+
+  updateUser = async (id, updatedDetails) => {
+    console.log('about to update user', id, updatedDetails);
+  };
 
   createNewUser = async (dataToCreateNewUser) => {
     try {
@@ -44,7 +49,6 @@ class App extends Component {
         dataToCreateNewUser
       );
       this.getAllUsers()
-      console.log('created user ', createRes.data);
       return createRes.data ? true : false;
     } catch (error) {
       console.error(error);
@@ -56,7 +60,7 @@ class App extends Component {
       <div className='App'>
         <h1>Sveiki atvykę į Vartotojų aplikaciją</h1>
         <MyForm onCreateNewUser={this.createNewUser} />
-        <UserList onDelete={this.deleteUser} users={this.state.users}/>
+        <UserList onDelete={this.deleteUser} onUpdate={this.updateUser} users={this.state.users}/>
       </div>
     );
   }

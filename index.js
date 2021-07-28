@@ -22,4 +22,4 @@ mongoose
   })
   .catch((err) => console.error(err.message));
 
-app.listen(PORT, console.log(`server is running on port${PORT}`));
+app.listen(PORT, console.log(`server is running on port ${PORT}`));

@@ -9,8 +9,17 @@ class MyForm extends Component {
   };
 
   handleSubmit = (e) => {
+      const { name, age, email, password } = this.state;
     e.preventDefault();
     console.log('submit prevented');
+    const dataToCreateNewUser = {
+        name,
+        age,
+        email,
+        password,
+      };
+      this.props.onCreateNewUser(dataToCreateNewUser);
+
   };
   handleInput = (e) => {
     this.setState({ [e.target.name]: e.target.value });

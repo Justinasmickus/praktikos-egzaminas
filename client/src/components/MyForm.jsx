@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 
 class MyForm extends Component {
   state = {
-    name: '',
-    age: '',
-    email: '',
-    password: '',
+    name: 'Tiger',
+    age: '26',
+    email: 'tiger@woods.com',
+    password: 'uwontpass',
   };
 
   handleSubmit = (e) => {

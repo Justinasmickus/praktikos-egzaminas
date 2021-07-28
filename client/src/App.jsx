@@ -11,15 +11,26 @@ class App extends Component {
       users: [],
     };
   }
+
+  createNewUser = async (dataToCreateNewUser) => {
+    try {
+      const createRes = await axios.post(
+        'http://localhost:4000/api/user/new',
+        dataToCreateNewUser
+      );
+      this.getAllUsers();
+      return createRes.data ? true : false;
+    } catch (error) {
+      console.error(error);
+    }
+  };
   componentDidMount() {
     this.getAllUsers();
   }
   getAllUsers = async () => {
-  
     try {
       const allUsersFromDb = await axios.get('http://localhost:4000/api/user');
       if (Array.isArray(allUsersFromDb.data) && allUsersFromDb.data.length) {
-       
         this.setState({ users: allUsersFromDb.data });
       }
     } catch (error) {
@@ -29,14 +40,16 @@ class App extends Component {
 
   deleteUser = async (id) => {
     try {
-      const deleteResult = await axios.delete('http://localhost:4000/api/user/delete/' + id);
+      const deleteResult = await axios.delete(
+        'http://localhost:4000/api/user/delete/' + id
+      );
       if (deleteResult.data) {
         this.getAllUsers();
       }
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   updateUser = async (id, updatedDetails) => {
     try {
@@ -50,25 +63,16 @@ class App extends Component {
     }
   };
 
-  createNewUser = async (dataToCreateNewUser) => {
-    try {
-      const createRes = await axios.post(
-        'http://localhost:4000/api/user/new',
-        dataToCreateNewUser
-      );
-      this.getAllUsers()
-      return createRes.data ? true : false;
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   render() {
     return (
       <div className='App'>
         <h1>Sveiki atvykę į Vartotojų aplikaciją</h1>
         <MyForm onCreateNewUser={this.createNewUser} />
-        <UserList onDelete={this.deleteUser} onUpdate={this.updateUser} users={this.state.users}/>
+        <UserList
+          onDelete={this.deleteUser}
+          onUpdate={this.updateUser}
+          users={this.state.users || []}
+        />
       </div>
     );
   }

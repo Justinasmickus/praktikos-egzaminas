@@ -3,6 +3,7 @@ import SingleUser from './SingleUser';
 class UserList extends Component {
     state = {  }
     render() { 
+        // if (!this.props.users.lenght) return <h2>Šiuo metu vartotojų dar nepridėta</h2>
         return ( <div>
            <h3>Vartotojų sąrašas</h3>
            <div className="list-container">

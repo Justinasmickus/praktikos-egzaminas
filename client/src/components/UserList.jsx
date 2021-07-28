@@ -7,7 +7,7 @@ class UserList extends Component {
             <h3>User list</h3>
             
             {this.props.users.map((user) => (
-          <SingleUser user={user} key={user} />
+          <SingleUser user={user} key={user._id} />
         ))}
         </div> );
     }

@@ -8,9 +8,24 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: [1, 2, 3],
+      users: [],
     };
   }
+  componentDidMount() {
+    this.getAllUsers();
+  }
+  getAllUsers = async () => {
+  
+    try {
+      const allUsersFromDb = await axios.get('http://localhost:4000/api/user');
+      if (Array.isArray(allUsersFromDb.data) && allUsersFromDb.data.length) {
+       
+        this.setState({ users: allUsersFromDb.data });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   createNewUser = async (dataToCreateNewUser) => {
     console.log('dataToCreateNewUser', dataToCreateNewUser);

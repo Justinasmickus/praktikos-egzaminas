@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import SingleUser from './SingleUser';
 class UserList extends Component {
     state = {  }
     render() { 
         return ( <div className="list-container">
             <h3>User list</h3>
+            
+            {this.props.users.map((user) => (
+          <SingleUser user={user} key={user} />
+        ))}
         </div> );
     }
 }

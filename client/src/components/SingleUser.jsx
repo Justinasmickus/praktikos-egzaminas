@@ -23,15 +23,15 @@ class SingleUser extends Component {
           <MyForm user={u} onEdit={this.handleEdit} />
         ) : (
           <React.Fragment>
-            <div className="single-user__card-body">
-            <h4>Vartotojo vardas:{u.name}</h4>
-            <p>amžius:{u.age}</p>
-            <p>El. paštas:{u.email}</p>
+            <div className="single-user__card-container ">
+            <p className='single-user__card-item'><strong>{u.name}</strong></p>
+            <p className='single-user__card-item'>amžius:{u.age}</p>
+            <p className='single-user__card-item'>El. paštas:{u.email}</p>
             {/* <p>Slaptažodis:{u.password}</p> */}
             </div>
             <div className="single-user__card-footer">
-                <button onClick={this.handleEdit}>Redaguoti</button>
-                <button onClick={() => this.props.onDelete(u._id)}>Ištrinti</button>
+                <button className='card-btn__edit' onClick={this.handleEdit}>Redaguoti</button>
+                <button className='card-btn__delete' onClick={() => this.props.onDelete(u._id)}>Ištrinti</button>
             </div>
             </React.Fragment> )}
         </div> );

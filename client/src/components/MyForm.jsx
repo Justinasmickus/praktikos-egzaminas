@@ -7,19 +7,27 @@ class MyForm extends Component {
     email: 'tiger@woods.com',
     password: 'uwontpass',
   };
+  clearInputs = () => {
+    this.setState({
+      name: '',
+      age: '',
+      email: '',
+      password: '',
+    });
+  };
 
-  handleSubmit = (e) => {
-      const { name, age, email, password } = this.state;
+  handleSubmit = async (e) => {
+    const { name, age, email, password } = this.state;
     e.preventDefault();
-    console.log('submit prevented');
     const dataToCreateNewUser = {
-        name,
-        age,
-        email,
-        password,
-      };
-      this.props.onCreateNewUser(dataToCreateNewUser);
-
+      name,
+      age,
+      email,
+      password,
+    };
+    this.props.onCreateNewUser(dataToCreateNewUser);
+    const createSuccess = await this.props.onCreateNewUser(dataToCreateNewUser);
+    if (createSuccess) this.clearInputs();
   };
   handleInput = (e) => {
     this.setState({ [e.target.name]: e.target.value });
